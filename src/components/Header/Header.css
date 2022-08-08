@@ -1,0 +1,10 @@
+.header{
+    display: flex;
+    padding: 20px 64px;
+    background-color: #B39CD0;
+    color: white;
+}
+.header > h2{
+    font-family: 'Chillax', sans-serif;
+    font-size: 25px;
+}

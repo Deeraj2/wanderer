@@ -1,0 +1,10 @@
+.hompage{
+    display: flex;
+    padding: 10px 30px;
+}
+.homepage-post{
+    width: 78%;
+}
+.homepage-form{
+    width: 28%;
+}
