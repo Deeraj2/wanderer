@@ -1,6 +1,8 @@
 import React from 'react'
 import Post from '../Post/Post'
+import CircularProgress from '@mui/material/CircularProgress';
 import { useSelector } from 'react-redux';
+import './Posts.css'
 
 
 function Posts() {
@@ -10,10 +12,11 @@ function Posts() {
   console.log(posts)
 
   return (
-    <div className='posts'>
-      <Post />
-      <Post />
-    </div>
+    !posts.length ? ( <CircularProgress sx={{ textAlign: 'center' }} /> ) : (
+      <div className='posts'>
+       { posts.map((post) => <Post key={post._id}  post={post} /> ) }
+      </div>
+    )
   )
 }
 
