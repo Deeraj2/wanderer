@@ -1,0 +1,42 @@
+.auth{
+    position: relative;
+    height: 100vh;
+    background: url("./images/bg1.jpg") center no-repeat;
+    background-size: cover;
+}
+
+.auth-box {
+    max-width: 300px;
+    padding: 70px;
+    margin-left: auto;
+    margin-right: auto;
+    background: rgba(0, 0, 0, 0.85);
+}
+
+.auth-tab {
+    max-width: 300px;
+}
+
+.auth-gradient {
+    width: 100%;
+    z-index: 1;
+    height: 100vh;
+    background: rgba(0, 0, 0, 0.4);
+    background-image: linear-gradient(to top,
+            rgba(0, 0, 0, 0.8) 0,
+            rgba(0, 0, 0, 0) 60%,
+            rgba(0, 0, 0, 0.8)100%);
+}
+
+.auth-form {
+    position: absolute;
+    top: 20%;
+    margin-left: auto;
+    margin-right: auto;
+    text-align: center;
+    z-index: 1;
+    color: #fff;
+    padding: 20px;
+    left: 0;
+    right: 0;
+}

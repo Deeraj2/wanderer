@@ -1,10 +1,39 @@
 .header{
     display: flex;
-    padding: 20px 64px;
+    justify-content: space-between;
+    align-items: center;
+    padding: 10px 64px;
     background-color: #B39CD0;
     color: white;
 }
 .header > h2{
     font-family: 'Chillax', sans-serif;
     font-size: 25px;
+    cursor: pointer;
+}
+.header-content{
+    display: flex;
+    align-items: center;
+}
+.header-content > p {
+    margin-left: 10px;
+    font-weight: 600;
+    margin-right: 20px;
+}
+.header-btn{
+    padding: 15px;
+    width: 100px;
+    font-size: 1rem;
+    margin-left: 20px;
+    outline: none;
+    border: none;
+    border-radius: 6px;
+    background-color: #7654a0;
+    color: white;
+    font-weight: 600;
+    cursor: pointer;
+    transition: 0.2s ease-in-out;
+}
+.header-btn:hover{
+    background-color: #634686;
 }

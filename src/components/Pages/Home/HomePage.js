@@ -1,9 +1,10 @@
 import React, { useEffect, useState } from 'react'
 import './HomePage.css'
-import Form from '../Form/Form'
-import Posts from '../Posts/Posts'
+import Form from '../../Form/Form'
+import Posts from '../../Posts/Posts'
 import { useDispatch } from 'react-redux'
-import { getPosts } from '../../actions/post'
+import { getPosts } from '../../../actions/post'
+import Header from '../../Header/Header'
 
 function HomePage() {
 
@@ -15,6 +16,8 @@ function HomePage() {
   },[currentId, dispatch])
 
   return (
+    <>
+    <Header />
     <div className='hompage'>
         <div className='homepage-post'>
             <Posts  setCurrentId={setCurrentId} />
@@ -23,6 +26,7 @@ function HomePage() {
             <Form currentId={currentId} setCurrentId={setCurrentId} />
         </div>
     </div>
+  </>
   )
 }
 

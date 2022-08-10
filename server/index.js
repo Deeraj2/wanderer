@@ -17,7 +17,10 @@ app.use('/posts', postRoutes)
 
 // const connect = 'mongodb://localhost:27017/BlogDB'
 
-mongoose.connect(process.env.CONNECTION_URL)
+mongoose.connect(process.env.CONNECTION_URL,{
+            useNewUrlParser: true,
+            useUnifiedTopology: true,
+        })
 
 const PORT = process.env.PORT || 4000
 
