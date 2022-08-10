@@ -5,7 +5,7 @@ import { useSelector } from 'react-redux';
 import './Posts.css'
 
 
-function Posts() {
+function Posts({setCurrentId}) {
 
   const posts = useSelector((state) => state.posts)
 
@@ -14,7 +14,7 @@ function Posts() {
   return (
     !posts.length ? ( <CircularProgress sx={{ textAlign: 'center' }} /> ) : (
       <div className='posts'>
-       { posts.map((post) => <Post key={post._id}  post={post} /> ) }
+       { posts.map((post) => <Post key={post._id}  post={post} setCurrentId={setCurrentId} /> ) }
       </div>
     )
   )

@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react'
+import React, { useEffect, useState } from 'react'
 import './HomePage.css'
 import Form from '../Form/Form'
 import Posts from '../Posts/Posts'
@@ -7,19 +7,20 @@ import { getPosts } from '../../actions/post'
 
 function HomePage() {
 
+  const [currentId, setCurrentId] = useState(null)
   const dispatch = useDispatch()
 
   useEffect(()=>{
     dispatch(getPosts())
-  },[dispatch])
+  },[currentId, dispatch])
 
   return (
     <div className='hompage'>
         <div className='homepage-post'>
-            <Posts />
+            <Posts  setCurrentId={setCurrentId} />
         </div>
         <div className='homepage-form'>
-            <Form />
+            <Form currentId={currentId} setCurrentId={setCurrentId} />
         </div>
     </div>
   )
