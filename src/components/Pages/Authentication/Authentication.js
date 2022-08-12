@@ -3,26 +3,31 @@ import { useNavigate } from 'react-router-dom';
 import './Authentication.css';
 import jwt_decode from 'jwt-decode';
 import useScript from './useScript';
+import { useDispatch } from 'react-redux' ;
+import {signin, signup} from '../../../actions/auth'
+
+const initialState = { firstName: '', lastName: '', email: '', password: '', confirmPassword: '' }
 
 function Authentication() {
 
   const navigate = useNavigate()
+  const dispatch = useDispatch()
   const [isSignUp, setisSignUp] = useState(false)
 
+  //Form Data
+  const [formData, setFormData] = useState(initialState)
 
-  function handleCallbackResponse(res) {
-        const result = jwt_decode(res?.credential)
-        
-        console.log(result)
-        // const result = jwt_decode(res?.profileObj);
-        // const token = (res?.tokenId);
+  //GOOGLE LOGIN
+  const handleCallbackResponse = async(res) => {
+    const result = jwt_decode(res?.credential)
+    const tokenId = (res?.credential)
 
-        // try {
-        //     dispatch({type: 'AUTH', data: {result, token}})
-        //     navigate('/')
-        // } catch (error) {
-        //     console.log(error)
-        // }
+    try {
+      dispatch({ type: 'AUTH', data: { result, tokenId } })
+      navigate('/')
+    } catch (error) {
+      console.log(error)
+    }
   }
 
 
@@ -39,7 +44,23 @@ function Authentication() {
             { theme: "outline", size: "large", width: "300", padding: "20" }
             
         )
-    }, [])
+  }, [])
+
+  //FORM SUBMIT
+  const handleSubmit = (e) => {
+    e.preventDefault()
+    
+    if(isSignUp){
+      dispatch(signup(formData, navigate))
+    }else{
+      dispatch(signin(formData, navigate))
+    }
+
+  }
+
+  const handleChange = (e) =>{
+    setFormData({  ...formData, [e.target.name]: e.target.value })
+  }
 
   return (
     <div className='auth'>
@@ -48,19 +69,19 @@ function Authentication() {
       </div>
       <div className='auth-gradient' />    
           <div className='auth-form' >
-            <form className='auth-login'>
+            <form className='auth-login' onSubmit={handleSubmit}>
               <h1>{isSignUp ? "Sign Up" : "Sign In"}</h1>
               {
                 isSignUp && (
                   <div className='auth-signIn'>
-                    <input name="firstName"  className='auth-fname' type='text' placeholder='First Name' autoFocus/>
-                    <input name="lastName"  type='text' placeholder='Last Name'  /> 
+                    <input name="firstName"  className='auth-fname' type='text' placeholder='First Name' autoFocus onChange={handleChange}/>
+                    <input name="lastName"  type='text' placeholder='Last Name' onChange={handleChange}  /> 
                   </div>
                 )
               }
-              <input type='email' name='email' placeholder='Email' />
-              <input type='password' name='password' placeholder='Password' />
-              { isSignUp && <input type='password' name='confirmPassword' placeholder='Confirm Password' /> }
+              <input type='email' name='email' placeholder='Email' onChange={handleChange}/>
+              <input type='password' name='password' placeholder='Password' onChange={handleChange}/>
+              { isSignUp && <input type='password' name='confirmPassword' placeholder='Confirm Password' onChange={handleChange}/> }
               <button type='submit' className='submit-btn'>{ isSignUp ? "Sign Up" : "Sign In" }</button>
               <button className='signIn-btn' ref={googleSignInbtn}></button>
               <h4 className='switch-btn' onClick={()=> setisSignUp(!isSignUp)}>
