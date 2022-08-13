@@ -20,10 +20,10 @@ function Authentication() {
   //GOOGLE LOGIN
   const handleCallbackResponse = async(res) => {
     const result = jwt_decode(res?.credential)
-    const tokenId = (res?.credential)
+    const token = (res?.credential)
 
     try {
-      dispatch({ type: 'AUTH', data: { result, tokenId } })
+      dispatch({ type: 'AUTH', data: { result, token } })
       navigate('/')
     } catch (error) {
       console.log(error)

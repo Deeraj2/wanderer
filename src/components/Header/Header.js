@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import './Header.css'
 import Avatar from '@mui/material/Avatar';
+import decode from 'jwt-decode';
 import { useNavigate } from 'react-router-dom';
 import { useDispatch } from 'react-redux' ;
 
@@ -18,12 +19,16 @@ function Header() {
   }
   
   useEffect(()=>{
-    const tokenId = user?.tokenId;
+    const token = user?.tokenId;
 
+    if(token) {
+      const decodeToken = decode(token)
+
+      if(decodeToken.exp*1000 < new Date().getTime()) logout()
+    }
 
     setUser(JSON.parse(localStorage.getItem('profile')))
   }, [])
-  console.log(user)
 
   return (
     <div className='header'>
