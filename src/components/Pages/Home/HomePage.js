@@ -3,13 +3,43 @@ import './HomePage.css'
 import Form from '../../Form/Form'
 import Posts from '../../Posts/Posts'
 import { useDispatch } from 'react-redux'
-import { getPosts } from '../../../actions/post'
+import { useNavigate, useLocation } from 'react-router-dom'
+import { getPosts, getPostSearch } from '../../../actions/post'
 import Header from '../../Header/Header'
+import { Paper } from '@mui/material'
+import Paginate from '../../Pagination/Paginate'
+
+function useQuery(){
+  return new URLSearchParams(useLocation().search)
+}
+
 
 function HomePage() {
 
   const [currentId, setCurrentId] = useState(null)
   const dispatch = useDispatch()
+  const query = useQuery();
+  const navigate = useNavigate();
+  const page = query.get('page') || 1;
+  const searchQuery = query.get('searchQuery')
+  const [search, setSearch] = useState('');
+  const [tags, setTags] = useState('')
+
+  const handleKeyPress = (e) => {
+    if(e.keyCode === 13){
+        searchPost()
+    }
+  }
+
+  const searchPost = (e) =>{
+    e.preventDefault();
+    if(search.trim() || tags){
+      dispatch(getPostSearch({search, tags}))
+      navigate(`/posts/search?searchQuery=${search || 'none'}&tags=${tags}`)
+    }else{
+      navigate('/')
+    }
+  }
 
   useEffect(()=>{
     dispatch(getPosts())
@@ -23,7 +53,17 @@ function HomePage() {
             <Posts  setCurrentId={setCurrentId} />
         </div>
         <div className='homepage-form'>
+            <div className='searchbar'>
+              <input type='text' placeholder='Search post' onKeyPress={handleKeyPress}  value={search} onChange={(e)=> setSearch(e.target.value)} />
+              <div className='tagbar'>
+                <input type='text' placeholder='Search Tags' value={tags} onChange={(e)=> setTags(e.target.value)} />
+                <button onClick={searchPost} >Search</button>  
+              </div>
+            </div>
             <Form currentId={currentId} setCurrentId={setCurrentId} />
+            <div className='pagination' >
+              <Paginate />
+            </div>
         </div>
     </div>
   </>
