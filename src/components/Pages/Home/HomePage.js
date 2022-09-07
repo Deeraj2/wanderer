@@ -41,9 +41,9 @@ function HomePage() {
     }
   }
 
-  useEffect(()=>{
-    dispatch(getPosts())
-  },[currentId, dispatch])
+  // useEffect(()=>{
+  //   dispatch(getPosts())
+  // },[currentId, dispatch])
 
   return (
     <>
@@ -62,7 +62,7 @@ function HomePage() {
             </div>
             <Form currentId={currentId} setCurrentId={setCurrentId} />
             <div className='pagination' >
-              <Paginate />
+              <Paginate page={page}/>
             </div>
         </div>
     </div>
