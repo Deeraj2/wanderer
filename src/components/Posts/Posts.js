@@ -7,11 +7,12 @@ import './Posts.css'
 
 function Posts({setCurrentId}) {
 
-  const { posts } = useSelector((state) => state.posts);   //[] -> {, isLoading posts: [] }
+  const { posts, isLoading } = useSelector((state) => state.posts);   //[] -> {, isLoading posts: [] }
 
+  if(!posts.length && !isLoading) return "No posts"
 
   return (
-    !posts?.length ? ( <CircularProgress sx={{ textAlign: 'center' }} /> ) : (
+     isLoading ? ( <CircularProgress sx={{ textAlign: 'center' }} /> ) : (
       <div className='posts'>
        { posts.map((post) => <Post key={post._id}  post={post} setCurrentId={setCurrentId} /> ) }
       </div>

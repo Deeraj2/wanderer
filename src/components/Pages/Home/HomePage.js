@@ -61,9 +61,14 @@ function HomePage() {
               </div>
             </div>
             <Form currentId={currentId} setCurrentId={setCurrentId} />
-            <div className='pagination' >
-              <Paginate page={page}/>
-            </div>
+            {
+              (!searchQuery && !tags) && (
+                <div className='pagination' >
+                  <Paginate page={page}/>
+                </div>
+              )
+            }
+            
         </div>
     </div>
   </>

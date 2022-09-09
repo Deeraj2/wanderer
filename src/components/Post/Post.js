@@ -7,10 +7,12 @@ import ThumbUpOffAltIcon from '@mui/icons-material/ThumbUpOffAlt';
 import DeleteIcon from '@mui/icons-material/Delete';
 import {useDispatch} from 'react-redux';
 import { deletPost, likePost } from '../../actions/post';
+import { useNavigate } from 'react-router-dom';
 
 function Post({post, setCurrentId}) {
 
   const dispatch = useDispatch()
+  const navigate = useNavigate()
 
   const user = JSON.parse(localStorage.getItem('profile'));
 
@@ -28,7 +30,7 @@ function Post({post, setCurrentId}) {
   };
 
   return (
-    <div className='post-detail'>
+    <div className='post-detail' onClick={() => navigate(`/posts/${post._id}`)}>
       <div className='post-header' >
         <img src={post?.selectedFile} alt="user-post-pic" />
         <div className='header-content'>
