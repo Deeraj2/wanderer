@@ -25,7 +25,7 @@ function PostDetail() {
 
   if(isLoading) return <CircularProgress size="7em" />
 
-  const recommendedPosts = posts.filter((posts)=> posts._id !== post._id)
+  const recommendedPosts = posts.filter((posts)=> posts?._id !== post?._id)
 
   return (
     <>
@@ -46,7 +46,7 @@ function PostDetail() {
           <div className='r-content'>
             <h2>Recommended For You</h2>
             {
-              recommendedPosts.map((post) => <Post post={post} />)
+              recommendedPosts.map((post) => <Post post={post} key={post._id} />)
             }
           </div>
         )
