@@ -18,9 +18,24 @@
     font-weight: 700;
 }
 .desc{
-    padding-top: 3rem;
+    padding-top: 2rem;
 }
 .creator{
-    padding-top: 3rem;
+    padding-top: 2rem;
     font-size: 1.1rem;
+}
+.r-content{
+    padding: 20px 17px;
+    flex-wrap: wrap;
+
+}
+.r-content > h2{
+    text-align: center;
+    font-size: 2rem;
+}
+@media (max-width: 800px){
+    .post-details{
+        display: flex;
+        flex-direction: column;
+    }
 }

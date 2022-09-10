@@ -32,7 +32,7 @@ function HomePage() {
   const searchPost = (e) =>{
     e.preventDefault();
     if(search.trim() || tags){
-      dispatch(getPostSearch({search, tags}))
+      dispatch(getPostSearch({search, tags: tags}))
       navigate(`/posts/search?searchQuery=${search || 'none'}&tags=${tags}`)
     }else{
       navigate('/')

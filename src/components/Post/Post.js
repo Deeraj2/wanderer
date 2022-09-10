@@ -16,6 +16,11 @@ function Post({post, setCurrentId}) {
 
   const user = JSON.parse(localStorage.getItem('profile'));
 
+
+  function truncate(string, n){
+        return string?.length > n ? string.substr(0, n-1) + "..." : string
+    }
+
   const Likes = () => {
     if (post.likes.length > 0) {
       return post.likes.find((like) => like === (user?.result?.sub || user?.result?._id))
@@ -47,7 +52,7 @@ function Post({post, setCurrentId}) {
       </div>
       <div className='post-content'>
         <h3>{post.title}</h3>
-        <p>{post.message}</p>
+        <p>{truncate(post.message, 50)} read more</p>
         <p>{post.tags.map((tag) => `#${tag} `)}</p>
       </div>
       <div className='post-icons'>
