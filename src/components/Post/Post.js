@@ -30,8 +30,8 @@ function Post({post, setCurrentId}) {
   };
 
   return (
-    <div className='post-detail' onClick={() => navigate(`/posts/${post._id}`)}>
-      <div className='post-header' >
+    <div className='post-detail' >
+      <div className='post-header' onClick={() => navigate(`/posts/${post._id}`)} >
         <img src={post?.selectedFile} alt="user-post-pic" />
         <div className='header-content'>
           <div className='content'>

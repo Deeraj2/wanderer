@@ -25,6 +25,7 @@ function Authentication() {
     try {
       dispatch({ type: 'AUTH', data: { result, token } })
       navigate('/')
+      window.location.reload()
     } catch (error) {
       console.log(error)
     }
@@ -64,9 +65,6 @@ function Authentication() {
 
   return (
     <div className='auth'>
-      <div className='login-header' onClick={() => navigate('/')}>
-            <h1>Wanderer</h1>
-      </div>
       <div className='auth-gradient' />    
           <div className='auth-form' >
             <form className='auth-login' onSubmit={handleSubmit}>

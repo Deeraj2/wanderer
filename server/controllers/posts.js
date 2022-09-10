@@ -1,20 +1,27 @@
 import mongoose from "mongoose"
 import PostMessage from "../models/postMessage.js"
 
-export const getPost = async (req, res) => {
-
+export const getPosts = async (req, res) => {
     const { page  } = req.query;
 
-    
     try {
-
         const LIMIT = 8;
         const startIndex = (Number(page) - 1 ) * LIMIT;   //get the starting index of the page
-
         const total = await PostMessage.countDocuments({})
-
         const post = await PostMessage.find().sort({ _id: -1 }).limit(LIMIT).skip(startIndex)
         res.status(200).json({ data: post,  currentPages: Number(page), numberOfPage: Math.ceil(total/LIMIT) })
+    } catch (error) {
+        res.status(404).json({ message: error.message })
+    }
+
+}
+
+export const getPost = async(req, res) => {
+    const { id } = req.params;
+
+    try {
+        const post = await PostMessage.findById(id);
+        res.status(200).json(post)
     } catch (error) {
         res.status(404).json({ message: error.message })
     }

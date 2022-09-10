@@ -1,0 +1,26 @@
+.post-details{
+    padding: 30px 20px;
+    display: flex;
+    justify-content: space-evenly;
+    align-items: center;
+}
+
+.post-img > img{
+    height: 70vh;
+    border-radius: 9px;
+}
+
+.post-content{
+    max-width: 600px;
+}
+.content-header{
+    font-size: 3rem;
+    font-weight: 700;
+}
+.desc{
+    padding-top: 3rem;
+}
+.creator{
+    padding-top: 3rem;
+    font-size: 1.1rem;
+}

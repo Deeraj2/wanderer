@@ -5,8 +5,6 @@ import Posts from '../../Posts/Posts'
 import { useDispatch } from 'react-redux'
 import { useNavigate, useLocation } from 'react-router-dom'
 import { getPosts, getPostSearch } from '../../../actions/post'
-import Header from '../../Header/Header'
-import { Paper } from '@mui/material'
 import Paginate from '../../Pagination/Paginate'
 
 function useQuery(){
@@ -47,7 +45,6 @@ function HomePage() {
 
   return (
     <>
-    <Header />
     <div className='hompage'>
         <div className='homepage-post'>
             <Posts  setCurrentId={setCurrentId} />
